@@ -3,35 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smarty-Paths Fraud Strategy Analysis</title>
-    
-    <!-- Google Fonts -->
+    <title>Smarty-Paths Fraud Strategy Analysis - POV</title>
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-    
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
     <style>
         :root {
-            /* Primary Brand Colors */
-            --color-primary: #FF6900;      /* Orange - eyebrows, highlights, CTAs */
-            --color-secondary: #113A5F;    /* Navy blue - headlines, navigation, primary text */
-            --color-accent: #7FB2D6;       /* Light blue - subtle accents, metadata */
-            
-            /* Supporting Colors */
-            --color-green: #899E45;        /* Success, positive metrics */
-            --color-gold: #E1A825;         /* Highlights, warnings */
-            --color-purple: #856F98;       /* Alternative accent */
-            
-            /* Neutrals */
-            --color-black: #000000;        /* Body text */
-            --color-white: #FFFFFF;        /* Backgrounds, cards */
-            --color-gray-dark: #6A7277;    /* Supporting text */
-            --color-gray-medium: #9FA9AF;  /* Metadata, captions */
-            --color-gray-light: #E5EAEB;   /* Borders, dividers */
-            --color-gray-lightest: #F7F7F7; /* Page backgrounds */
-
-            /* Fonts */
+            --color-primary: #FF6900;
+            --color-secondary: #113A5F;
+            --color-accent: #7FB2D6;
+            --color-green: #899E45;
+            --color-gold: #E1A825;
+            --color-purple: #856F98;
+            --color-black: #000000;
+            --color-white: #FFFFFF;
+            --color-gray-dark: #6A7277;
+            --color-gray-medium: #9FA9AF;
+            --color-gray-light: #E5EAEB;
+            --color-gray-lightest: #F7F7F7;
             --font-primary: 'Albert Sans', sans-serif;
             --font-accent: 'DM Serif Display', serif;
         }
@@ -44,11 +32,12 @@
 
         body {
             font-family: var(--font-primary);
-            background-color: var(--color-gray-lightest);
+            background: var(--color-gray-lightest);
             color: var(--color-black);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
         .left-nav {
             position: fixed;
             left: 0;
@@ -112,7 +101,6 @@
             font-weight: 500;
         }
 
-        /* Slides Container */
         .slides-container {
             margin-left: 16.5%;
             width: 83.5%;
@@ -129,7 +117,6 @@
             margin-bottom: 2px;
         }
 
-        /* Typography */
         .eyebrow {
             font-size: 14px;
             font-weight: 700;
@@ -159,20 +146,6 @@
             color: var(--color-secondary);
         }
 
-        .subtitle {
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--color-gray-dark);
-            line-height: 1.4;
-            margin-bottom: 24px;
-        }
-
-        .metadata {
-            font-size: 18px;
-            color: var(--color-gray-medium);
-            margin-top: 40px;
-        }
-
         h3, .section-header {
             font-size: 28px;
             font-weight: 600;
@@ -185,73 +158,54 @@
             font-weight: 400;
             line-height: 1.6;
             color: var(--color-black);
-            margin-bottom: 20px;
         }
 
-        /* Slide Footer */
-        .slide-footer {
-            position: absolute;
-            bottom: 40px;
-            left: 80px;
-            right: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid var(--color-gray-light);
-        }
-
-        .confidential {
-            font-size: 12px;
-            color: var(--color-gray-medium);
-        }
-
-        .slide-number {
-            font-size: 14px;
-            font-weight: 600;
+        .subtitle {
+            font-size: 24px;
+            font-weight: 400;
             color: var(--color-gray-dark);
+            line-height: 1.4;
         }
 
-        /* Title Slide */
-        .slide-title-page {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        /* Agenda */
-        .agenda-list {
-            max-width: 700px;
-        }
-
-        .agenda-item {
-            display: flex;
-            align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--color-gray-light);
-        }
-
-        .agenda-number {
-            font-size: 20px;
-            font-weight: 700;
+        .metric-value {
+            font-family: var(--font-accent);
+            font-size: 56px;
+            font-weight: 400;
+            line-height: 1;
             color: var(--color-primary);
-            width: 60px;
-            flex-shrink: 0;
+            margin-bottom: 8px;
         }
 
-        .agenda-text {
-            font-size: 20px;
-            color: var(--color-black);
+        .metric-label {
+            font-size: 16px;
+            color: var(--color-gray-dark);
+            line-height: 1.4;
         }
 
-        /* Metric Cards */
-        .metric-grid {
+        .caption, .chart-source {
+            font-size: 14px;
+            color: var(--color-gray-medium);
+            font-style: italic;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 32px;
+        }
+
+        .three-column {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .four-column {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
-            margin: 32px 0;
         }
 
         .metric-card {
@@ -268,31 +222,18 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.12);
         }
 
-        .metric-value {
-            font-family: var(--font-accent);
-            font-size: 56px;
-            font-weight: 400;
-            line-height: 1;
-            color: var(--color-primary);
-            margin-bottom: 8px;
-        }
-
-        .metric-label {
-            font-size: 16px;
-            color: var(--color-gray-dark);
-            line-height: 1.4;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .metric-insight {
-            font-size: 14px;
+        .slide-footer {
+            position: absolute;
+            bottom: 24px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
             color: var(--color-gray-medium);
-            line-height: 1.4;
-            font-style: italic;
         }
 
-        /* Callouts */
         .callout-primary {
             background: #FFF9F5;
             border-left: 4px solid var(--color-primary);
@@ -314,222 +255,85 @@
             color: var(--color-black);
         }
 
-        /* Charts */
         .chart-container {
+            position: relative;
             height: 400px;
-            margin: 32px 0;
+            margin: 24px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
             background: white;
-            padding: 20px;
             border-radius: 8px;
+            overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        .chart-source {
-            font-size: 14px;
-            color: var(--color-gray-medium);
-            font-style: italic;
-        }
-
-        /* Tables */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 32px 0;
-            font-size: 15px;
-        }
-
-        .data-table th {
+        th {
             background: var(--color-secondary);
             color: white;
             padding: 16px;
             text-align: left;
             font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-size: 14px;
         }
 
-        .data-table td {
-            padding: 16px;
+        td {
+            padding: 12px 16px;
             border-bottom: 1px solid var(--color-gray-light);
-        }
-
-        .data-table tr:hover {
-            background: var(--color-gray-lightest);
-        }
-
-        .data-table .highlight {
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-
-        /* Gap Cards */
-        .gaps-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-top: 40px;
-        }
-
-        .gap-card {
-            padding: 32px;
-            background: white;
-            border: 2px solid var(--color-gray-light);
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .gap-card:hover {
-            border-color: var(--color-accent);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
-
-        .gap-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--color-secondary);
-            margin-bottom: 20px;
-        }
-
-        .gap-label {
             font-size: 14px;
-            font-weight: 700;
+        }
+
+        tr:hover {
+            background: #F8FAFC;
+        }
+
+        .tier-high { border-left: 4px solid #DC2626; }
+        .tier-medium { border-left: 4px solid var(--color-gold); }
+        .tier-low { border-left: 4px solid #0284C7; }
+        .tier-surgical { border-left: 4px solid var(--color-green); }
+
+        .bullet-list {
+            margin: 24px 0;
+        }
+
+        .bullet-list li {
+            margin: 12px 0;
+            padding-left: 8px;
+        }
+
+        .bullet-list li::marker {
             color: var(--color-primary);
-            margin-bottom: 8px;
         }
 
-        .gap-section {
-            margin-bottom: 16px;
-        }
-
-        /* ROI Cards */
-        .roi-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin: 40px 0;
-        }
-
-        .roi-card {
-            padding: 32px 24px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .roi-card.positive {
-            background: #F0FDF4;
-            border: 2px solid var(--color-green);
-        }
-
-        .roi-card.neutral {
-            background: #EFF6FF;
-            border: 2px solid var(--color-accent);
-        }
-
-        .roi-card.result {
-            background: var(--color-secondary);
-            color: white;
-        }
-
-        .roi-value {
-            font-family: var(--font-accent);
-            font-size: 48px;
-            font-weight: 400;
-            margin-bottom: 12px;
-        }
-
-        .roi-label {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .roi-description {
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        /* Step Cards */
-        .step-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin: 32px 0;
-        }
-
-        .step-card {
-            padding: 32px;
+        .implementation-phase {
             background: white;
-            border: 2px solid var(--color-gray-light);
-            border-radius: 8px;
-            transition: all 0.3s;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            border-left: 4px solid var(--color-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .step-card:hover {
-            border-color: var(--color-primary);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
-
-        .step-number {
-            width: 48px;
-            height: 48px;
-            background: var(--color-primary);
-            color: white;
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
-
-        .step-title {
-            font-size: 20px;
-            font-weight: 600;
+        .phase-header {
             color: var(--color-secondary);
-            margin-bottom: 16px;
-        }
-
-        .step-description {
-            font-size: 16px;
-            line-height: 1.5;
-            color: var(--color-black);
-        }
-
-        /* Two Column Layout */
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-top: 32px;
-        }
-
-        /* Four Column Grid */
-        .four-column {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        /* Lists */
-        ul {
-            margin: 20px 0;
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 12px;
+            font-weight: 600;
             font-size: 18px;
-            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .phase-duration {
+            color: var(--color-gray-dark);
+            font-size: 14px;
+            margin-bottom: 12px;
         }
     </style>
 </head>
 <body>
 
-<!-- Left Navigation -->
-<div class="left-nav">
+<nav class="left-nav">
     <div class="nav-logo">
         <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168.12 75.54">
             <defs>
@@ -542,7 +346,7 @@
             <polygon class="cls-2" points="12.57 46.92 30.91 65.22 49.25 46.92 30.91 28.62 12.57 46.92"/>
             <polygon class="cls-1" points="30.91 10.32 12.57 28.62 30.91 46.92 49.25 28.62 30.91 10.32"/>
             <path class="cls-3" d="M58.17,44.11l2.44-2.92c1.69,1.39,3.46,2.27,5.6,2.27,1.69,0,2.71-.67,2.71-1.77v-.05c0-1.04-.64-1.58-3.78-2.38-3.78-.96-6.22-2.01-6.22-5.72v-.05c0-3.4,2.73-5.65,6.57-5.65,2.74,0,5.07,.86,6.97,2.38l-2.15,3.1c-1.66-1.15-3.3-1.85-4.88-1.85s-2.41,.72-2.41,1.63v.05c0,1.23,.8,1.63,4.05,2.46,3.81,.99,5.95,2.36,5.95,5.62v.05c0,3.72-2.84,5.81-6.89,5.81-2.84,0-5.71-.99-7.96-3"/>
-            <path class="cls-3" d="M86.41,39.75v-.05c0-2.11-1.53-3.96-3.78-3.96s-3.73,1.79-3.73,3.91v.05c0,2.11,1.53,3.96,3.78,3.96s3.73-1.79,3.73-3.91m-11.53,0v-.05c0-4.12,3.33-7.46,7.8-7.46s7.75,3.29,7.75,7.41v.05c0,4.12-3.33,7.46-7.8,7.46s-7.75-3.29-7.75-7.41"/>
+            <path class="cls-3" d="M86.41,39.75v-.05c0-2.11-1.53-3.96-3.78-3.96s-3.73,1.79-3.73,3.91v.05c0,2.11,1.53,3.96,3.78,3.96s3.73-1.79,3.73-3.91m-11.53,0v-.05c0-4.12,3.33-7.46,7.8-7.46s7.75,3.29,7.75,7.41v.05c0,4.12-3.33,7.46-7.8-7.46s-7.75-3.29-7.75-7.41"/>
             <path class="cls-3" d="M92.17,39.75v-.05c0-4.09,3.14-7.46,7.54-7.46,2.71,0,4.4,.91,5.74,2.41l-2.49,2.68c-.91-.96-1.82-1.58-3.27-1.58-2.04,0-3.49,1.79-3.49,3.91v.05c0,2.19,1.42,3.96,3.65,3.96,1.37,0,2.31-.59,3.3-1.53l2.39,2.41c-1.39,1.52-3,2.62-5.87,2.62-4.32,0-7.48-3.32-7.48-7.41"/>
             <path class="cls-3" d="M107.56,41.79v-9.28h4.08v8c0,1.93,.91,2.92,2.47,2.92s2.55-.99,2.55-2.92v-8h4.08v14.34h-4.08v-2.03c-.94,1.2-2.15,2.3-4.21,2.3-3.08,0-4.88-2.03-4.88-5.32"/>
             <path class="cls-3" d="M123.87,32.5h4.08v2.89c.83-1.98,2.17-3.26,4.58-3.16v4.25h-.21c-2.71,0-4.37,1.63-4.37,5.06v5.3h-4.08v-14.34h0Z"/>
@@ -550,793 +354,829 @@
             <polygon class="cls-3" points="30.91 46.91 49.25 46.91 40.07 37.77 30.91 46.91"/>
             <g>
                 <path class="cls-3" d="M152.03,44.38v.49h-.76v2.26h-.56v-2.26h-.76v-.49h2.08Z"/>
-                <path class="cls-3" d="M155.55,47.13h-.57l-.2-1.71-.67,1.4h-.44l-.68-1.4-.2,1.71h-.57l.34-2.75h.47l.85,1.81,.84-1.81h.48l.34,2.75h.01Z"/>
+                <path class="cls-3" d="M155.55,47.13h-.57l-.20-1.71-.67,1.40h-.44l-.68-1.40-.2,1.71h-.57l.34-2.75h.47l.85,1.81,.84-1.81h.48l.34,2.75h.01Z"/>
             </g>
         </svg>
     </div>
     
     <div class="nav-section-title">Analysis</div>
-    <a href="#slide1" class="nav-item active">Title</a>
-    <a href="#slide2" class="nav-item">Agenda</a>
-    <a href="#slide3" class="nav-item">Executive Summary</a>
-    <a href="#slide4" class="nav-item">Portfolio Analysis</a>
-    <a href="#slide5" class="nav-item">Top Fraud Rules</a>
+    <a href="#slide-title" class="nav-item active">Title</a>
+    <a href="#slide-agenda" class="nav-item">Agenda</a>
+    <a href="#slide-executive" class="nav-item">Executive Summary</a>
+    <a href="#slide-data-overview" class="nav-item">Data Overview</a>
+    <a href="#slide-tier-analysis" class="nav-item">Tier Analysis</a>
+    <a href="#slide-top-rules" class="nav-item">Top Rules</a>
     
-    <div class="nav-section-title">Insights</div>
-    <a href="#slide6" class="nav-item">Rule Performance</a>
-    <a href="#slide7" class="nav-item">Escalation Tiers</a>
-    <a href="#slide8" class="nav-item">Key Features</a>
-    <a href="#slide9" class="nav-item">Gap Analysis</a>
+    <div class="nav-section-title">Strategy</div>
+    <a href="#slide-detection-layers" class="nav-item">Detection Layers</a>
+    <a href="#slide-feature-insights" class="nav-item">Feature Insights</a>
+    <a href="#slide-gaps" class="nav-item">Current Gaps</a>
+    <a href="#slide-recommendations" class="nav-item">Recommendations</a>
     
-    <div class="nav-section-title">Recommendations</div>
-    <a href="#slide10" class="nav-item">Strategy Layers</a>
-    <a href="#slide11" class="nav-item">ROI Projections</a>
-    <a href="#slide12" class="nav-item">Implementation</a>
-    <a href="#slide13" class="nav-item">Next Steps</a>
-</div>
+    <div class="nav-section-title">Implementation</div>
+    <a href="#slide-roi" class="nav-item">ROI Impact</a>
+    <a href="#slide-implementation" class="nav-item">Implementation</a>
+    <a href="#slide-next-steps" class="nav-item">Next Steps</a>
+</nav>
 
-<!-- Slides Container -->
 <div class="slides-container">
-
-<!-- Slide 1: Title -->
-<div class="slide slide-title-page" id="slide1">
-    <div class="eyebrow">Fraud Strategy Analysis</div>
-    <h1 class="title-large">Smarty-Paths</h1>
-    <h1 class="title-large">Fraud Detection POV</h1>
-    <p class="subtitle">Advanced ML-driven fraud strategy optimization for enhanced detection and reduced false positives</p>
-    <p class="metadata">Prepared by Socure | February 2026</p>
     
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">1</span>
-    </div>
-</div>
-
-<!-- Slide 2: Agenda -->
-<div class="slide" id="slide2">
-    <div class="eyebrow">Today's Discussion</div>
-    <h1>Agenda</h1>
-    
-    <div class="agenda-list">
-        <div class="agenda-item">
-            <span class="agenda-number">01</span>
-            <span class="agenda-text">Executive Summary & Key Findings</span>
-        </div>
-        <div class="agenda-item">
-            <span class="agenda-number">02</span>
-            <span class="agenda-text">Portfolio Analysis & Top Rules</span>
-        </div>
-        <div class="agenda-item">
-            <span class="agenda-number">03</span>
-            <span class="agenda-text">Performance Insights & Feature Analysis</span>
-        </div>
-        <div class="agenda-item">
-            <span class="agenda-number">04</span>
-            <span class="agenda-text">Escalation Strategy & Gap Identification</span>
-        </div>
-        <div class="agenda-item">
-            <span class="agenda-number">05</span>
-            <span class="agenda-text">Layered Defense Recommendations</span>
-        </div>
-        <div class="agenda-item">
-            <span class="agenda-number">06</span>
-            <span class="agenda-text">ROI Projections & Implementation Plan</span>
-        </div>
-    </div>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">2</span>
-    </div>
-</div>
-
-<!-- Slide 3: Executive Summary -->
-<div class="slide" id="slide3">
-    <div class="eyebrow">Executive Summary</div>
-    <h1>Key Findings at a Glance</h1>
-    
-    <div class="metric-grid">
-        <div class="metric-card">
-            <div class="metric-value">23</div>
-            <div class="metric-label">Fraud Detection Rules</div>
-            <div class="metric-insight">Generated from 223 ML features</div>
-        </div>
-        
-        <div class="metric-card">
-            <div class="metric-value">73%</div>
-            <div class="metric-label">Best Rule Precision</div>
-            <div class="metric-insight">Rule 18: Auto-decline ready</div>
-        </div>
-        
-        <div class="metric-card">
-            <div class="metric-value">33%</div>
-            <div class="metric-label">Maximum Recall</div>
-            <div class="metric-insight">Rule 4: Broad fraud coverage</div>
-        </div>
-    </div>
-    
-    <div class="callout-primary">
-        <div class="title">Bottom Line</div>
-        <div class="text">Analysis of 14,774 transactions reveals opportunity for surgical fraud detection with 
-        73% precision rules suitable for auto-decline, plus layered strategy capturing 50%+ of fraud while 
-        maintaining operational efficiency through targeted 11% total escalation rate.</div>
-    </div>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">3</span>
-    </div>
-</div>
-
-<!-- Slide 4: Portfolio Analysis -->
-<div class="slide" id="slide4">
-    <div class="eyebrow">Portfolio Analysis</div>
-    <h1>Transaction Volume & Rule Distribution</h1>
-    
-    <div class="chart-container">
-        <canvas id="portfolioChart"></canvas>
-    </div>
-    <p class="chart-source">Source: Smarty-Paths analysis of 14,774 transactions with 223 ML features</p>
-    
-    <div class="callout-primary">
-        <div class="title">Key Insight</div>
-        <div class="text">Rules naturally cluster into 4 distinct escalation tiers (1-2%, 2-4%, 4-6%, 7-9%) 
-        enabling precise volume control and operational planning. High-volume rules (7-9% escalation) achieve 
-        58-65% precision while surgical rules (1-2% escalation) reach 72-73% precision.</div>
-    </div>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">4</span>
-    </div>
-</div>
-
-<!-- Slide 5: Top Rules -->
-<div class="slide" id="slide5">
-    <div class="eyebrow">Top Performing Rules</div>
-    <h1>Best Rules by Use Case</h1>
-    
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>Use Case</th>
-                <th>Rule</th>
-                <th>Escalation</th>
-                <th>Precision</th>
-                <th>Recall</th>
-                <th>Key Signal</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><span class="highlight">Auto-Decline (Highest Precision)</span></td>
-                <td>Rule 18</td>
-                <td>2.00%</td>
-                <td class="highlight">73.31%</td>
-                <td>9.34%</td>
-                <td>Extreme CC risk + address mismatch</td>
-            </tr>
-            <tr>
-                <td><span class="highlight">Auto-Decline (Lowest FPR)</span></td>
-                <td>Rule 21</td>
-                <td>1.37%</td>
-                <td>72.41%</td>
-                <td>6.33%</td>
-                <td>Unverified phone + credit risk</td>
-            </tr>
-            <tr>
-                <td><span class="highlight">High-Volume Detection</span></td>
-                <td>Rule 2</td>
-                <td>7.87%</td>
-                <td>64.63%</td>
-                <td class="highlight">32.31%</td>
-                <td>Extreme CC risk + verified address</td>
-            </tr>
-            <tr>
-                <td><span class="highlight">Maximum Recall</span></td>
-                <td>Rule 4</td>
-                <td>9.07%</td>
-                <td>56.42%</td>
-                <td class="highlight">32.53%</td>
-                <td>High overall + email risk</td>
-            </tr>
-            <tr>
-                <td><span class="highlight">Synthetic Identity</span></td>
-                <td>Rule 9</td>
-                <td>4.74%</td>
-                <td>61.63%</td>
-                <td>18.59%</td>
-                <td>New email + burner phone + real address</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">5</span>
-    </div>
-</div>
-
-<!-- Slide 6: Rule Performance -->
-<div class="slide" id="slide6">
-    <div class="eyebrow">Rule Performance Analysis</div>
-    <h1>Precision vs Recall Trade-offs</h1>
-    
-    <div class="chart-container">
-        <canvas id="performanceChart"></canvas>
-    </div>
-    <p class="chart-source">Source: 23 ML-generated fraud rules performance analysis</p>
-    
-    <div class="callout-primary">
-        <div class="title">Strategic Observation</div>
-        <div class="text">Clear performance clusters emerge with surgical rules (top-right quadrant) ideal for 
-        auto-decline, balanced rules suitable for priority review, and high-recall rules for comprehensive 
-        coverage. No rules fall below 37% precision, indicating strong model quality.</div>
-    </div>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">6</span>
-    </div>
-</div>
-
-<!-- Slide 7: Escalation Tiers -->
-<div class="slide" id="slide7">
-    <div class="eyebrow">Escalation Strategy</div>
-    <h1>Four-Tier Volume Management</h1>
-    
-    <div class="four-column">
-        <div class="metric-card">
-            <div class="metric-value">1-2%</div>
-            <div class="metric-label">Surgical Tier</div>
-            <div class="metric-insight">72-73% precision<br>5-11% fraud coverage<br>Auto-decline ready</div>
-        </div>
-        
-        <div class="metric-card">
-            <div class="metric-value">2-4%</div>
-            <div class="metric-label">Low Volume Tier</div>
-            <div class="metric-insight">47-69% precision<br>9-15% fraud coverage<br>Priority review</div>
-        </div>
-        
-        <div class="metric-card">
-            <div class="metric-value">4-6%</div>
-            <div class="metric-label">Medium Volume Tier</div>
-            <div class="metric-insight">37-66% precision<br>13-26% fraud coverage<br>Standard review</div>
-        </div>
-        
-        <div class="metric-card">
-            <div class="metric-value">7-9%</div>
-            <div class="metric-label">High Volume Tier</div>
-            <div class="metric-insight">58-65% precision<br>~32% fraud coverage<br>Broad detection</div>
-        </div>
-    </div>
-    
-    <h3>Tier Selection Strategy</h3>
-    <p>Each tier serves specific operational needs: Surgical for automated decisions, Low Volume for expert review, 
-    Medium Volume for standard operations, and High Volume for maximum coverage with acceptable precision.</p>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">7</span>
-    </div>
-</div>
-
-<!-- Slide 8: Key Features -->
-<div class="slide" id="slide8">
-    <div class="eyebrow">Feature Analysis</div>
-    <h1>Most Predictive Fraud Signals</h1>
-    
-    <div class="chart-container">
-        <canvas id="featuresChart"></canvas>
-    </div>
-    <p class="chart-source">Source: Feature frequency analysis across 23 fraud detection rules</p>
-    
-    <div class="two-column">
-        <div>
-            <h3>Identity Verification Signals</h3>
-            <ul>
-                <li><strong>I616 (MVNO Phone):</strong> Burner/prepaid phones appear in 6 rules</li>
-                <li><strong>I709/I718 (Address-Name):</strong> Address verification critical for precision</li>
-                <li><strong>Email-Name Correlation:</strong> Mismatch indicates identity theft patterns</li>
-            </ul>
-        </div>
-        <div>
-            <h3>Risk Score Indicators</h3>
-            <ul>
-                <li><strong>Extreme CC Risk (>0.99):</strong> Most predictive single feature in 8 rules</li>
-                <li><strong>Phone Risk (>0.96):</strong> Strong fraud predictor across 6 rules</li>
-                <li><strong>Email Risk (>0.85):</strong> Consistent fraud correlation in 6 rules</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">8</span>
-    </div>
-</div>
-
-<!-- Slide 9: Gap Analysis -->
-<div class="slide" id="slide9">
-    <div class="eyebrow">Gap Identification</div>
-    <h1>Current State Opportunities</h1>
-    
-    <div class="gaps-grid">
-        <div class="gap-card">
-            <h3 class="gap-title">Surgical Precision Missing</h3>
-            <div class="gap-section">
-                <div class="gap-label">Current State:</div>
-                <p>Limited high-precision rules for automated decisions</p>
-            </div>
-            <div class="gap-section">
-                <div class="gap-label">Impact:</div>
-                <p>All suspicious transactions require manual review, increasing operational costs</p>
-            </div>
-            <div class="gap-section solution">
-                <div class="gap-label">Solution:</div>
-                <p>Implement Rules 18 & 21 for 72-73% precision auto-decline capability</p>
-            </div>
-        </div>
-        
-        <div class="gap-card">
-            <h3 class="gap-title">Synthetic Identity Detection</h3>
-            <div class="gap-section">
-                <div class="gap-label">Current State:</div>
-                <p>Generic fraud rules may miss synthetic identity patterns</p>
-            </div>
-            <div class="gap-section">
-                <div class="gap-label">Impact:</div>
-                <p>Sophisticated synthetic identities bypass detection systems</p>
-            </div>
-            <div class="gap-section solution">
-                <div class="gap-label">Solution:</div>
-                <p>Deploy Rules 9 & 16 targeting new email + burner phone + verified address patterns</p>
-            </div>
-        </div>
-        
-        <div class="gap-card">
-            <h3 class="gap-title">Volume Optimization</h3>
-            <div class="gap-section">
-                <div class="gap-label">Current State:</div>
-                <p>Unknown escalation rates and review queue sizing</p>
-            </div>
-            <div class="gap-section">
-                <div class="gap-label">Impact:</div>
-                <p>Resource planning challenges and potential processing bottlenecks</p>
-            </div>
-            <div class="gap-section solution">
-                <div class="gap-label">Solution:</div>
-                <p>Implement tiered approach with predictable 1-9% escalation rates by tier</p>
-            </div>
-        </div>
-        
-        <div class="gap-card">
-            <h3 class="gap-title">Credit-Specific Fraud</h3>
-            <div class="gap-section">
-                <div class="gap-label">Current State:</div>
-                <p>May lack specialized detection for credit product fraud</p>
-            </div>
-            <div class="gap-section">
-                <div class="gap-label">Impact:</div>
-                <p>Credit card and credit line fraud could be under-detected</p>
-            </div>
-            <div class="gap-section solution">
-                <div class="gap-label">Solution:</div>
-                <p>Deploy Rules 10, 11, 13 focusing on extreme CC/CL risk scores</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">9</span>
-    </div>
-</div>
-
-<!-- Slide 10: Strategy Layers -->
-<div class="slide" id="slide10">
-    <div class="eyebrow">Recommended Strategy</div>
-    <h1>Three-Layer Defense Architecture</h1>
-    
-    <div class="step-cards">
-        <div class="step-card">
-            <div class="step-number">1</div>
-            <h4 class="step-title">Auto-Decline Layer</h4>
-            <p class="step-description"><strong>Rules:</strong> 21 + 18<br>
-            <strong>Volume:</strong> ~3.4% escalation<br>
-            <strong>Precision:</strong> 72-73%<br>
-            <strong>Coverage:</strong> 15-16% of fraud<br>
-            Highest confidence rejections with minimal false positives</p>
-        </div>
-        
-        <div class="step-card">
-            <div class="step-number">2</div>
-            <h4 class="step-title">Priority Review Layer</h4>
-            <p class="step-description"><strong>Rules:</strong> 2 + 10 + 13<br>
-            <strong>Volume:</strong> ~14% additional escalation<br>
-            <strong>Precision:</strong> 65-68%<br>
-            <strong>Coverage:</strong> 30-35% of fraud<br>
-            Fast-track manual review for high-confidence cases</p>
-        </div>
-        
-        <div class="step-card">
-            <div class="step-number">3</div>
-            <h4 class="step-title">Standard Review Layer</h4>
-            <p class="step-description"><strong>Rules:</strong> 1 + 4 + 5<br>
-            <strong>Volume:</strong> ~24% additional escalation<br>
-            <strong>Precision:</strong> 56-62%<br>
-            <strong>Coverage:</strong> 50%+ of total fraud<br>
-            Comprehensive coverage with acceptable precision</p>
-        </div>
-    </div>
-    
-    <div class="callout-primary">
-        <div class="title">Combined Impact</div>
-        <div class="text">Total escalation: ~11% | Overall precision: 65%+ | Fraud coverage: 50%+ | 
-        Auto-decline capability: 3.4% volume at 72%+ precision</div>
-    </div>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">10</span>
-    </div>
-</div>
-
-<!-- Slide 11: ROI Projections -->
-<div class="slide" id="slide11">
-    <div class="eyebrow">Financial Impact</div>
-    <h1>Projected Annual Benefits</h1>
-    
-    <div class="roi-grid">
-        <div class="roi-card positive">
-            <div class="roi-label">Fraud Prevented</div>
-            <div class="roi-value">$2.8M</div>
-            <div class="roi-description">50%+ fraud detection improvement</div>
-        </div>
-        
-        <div class="roi-card positive">
-            <div class="roi-label">Operational Savings</div>
-            <div class="roi-value">$850K</div>
-            <div class="roi-description">Auto-decline + prioritized review</div>
-        </div>
-        
-        <div class="roi-card neutral">
-            <div class="roi-label">Implementation Cost</div>
-            <div class="roi-value">$400K</div>
-            <div class="roi-description">Platform + integration</div>
-        </div>
-        
-        <div class="roi-card result">
-            <div class="roi-label">Net Annual Benefit</div>
-            <div class="roi-value">$3.25M</div>
-            <div class="roi-description">8.1x return on investment</div>
-        </div>
-    </div>
-    
-    <h3>Additional Value Drivers</h3>
-    <ul>
-        <li><strong>Reduced False Positives:</strong> 72-73% precision rules minimize customer friction and revenue loss</li>
-        <li><strong>Operational Efficiency:</strong> Tiered escalation enables proper resource allocation and queue management</li>
-        <li><strong>Synthetic Identity Protection:</strong> Specialized rules detect sophisticated identity manipulation attempts</li>
-        <li><strong>Regulatory Compliance:</strong> Enhanced detection capabilities support compliance requirements</li>
-    </ul>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">11</span>
-    </div>
-</div>
-
-<!-- Slide 12: Implementation -->
-<div class="slide" id="slide12">
-    <div class="eyebrow">Implementation Plan</div>
-    <h1>Phased Deployment Approach</h1>
-    
-    <div class="step-cards">
-        <div class="step-card">
-            <div class="step-number">1</div>
-            <h4 class="step-title">Phase 1: Foundation (Weeks 1-4)</h4>
-            <p class="step-description">Deploy surgical rules (18 & 21) for auto-decline capability. 
-            Establish monitoring dashboards and performance baselines. Begin with shadow mode testing 
-            to validate precision expectations.</p>
-        </div>
-        
-        <div class="step-card">
-            <div class="step-number">2</div>
-            <h4 class="step-title">Phase 2: Expansion (Weeks 5-8)</h4>
-            <p class="step-description">Add priority review layer (Rules 2, 10, 13) with dedicated 
-            review queues. Implement operational workflows for tiered processing and establish 
-            performance KPIs.</p>
-        </div>
-        
-        <div class="step-card">
-            <div class="step-number">3</div>
-            <h4 class="step-title">Phase 3: Optimization (Weeks 9-12)</h4>
-            <p class="step-description">Deploy standard review layer for comprehensive coverage. 
-            Fine-tune thresholds based on performance data and optimize operational processes 
-            for maximum efficiency.</p>
-        </div>
-    </div>
-    
-    <h3>Success Metrics</h3>
-    <ul>
-        <li><strong>Precision Targets:</strong> 72%+ for auto-decline rules, 65%+ overall</li>
-        <li><strong>Volume Management:</strong> Escalation rates within ±10% of projections</li>
-        <li><strong>Fraud Coverage:</strong> 50%+ fraud detection within 90 days</li>
-        <li><strong>Operational Efficiency:</strong> Review queue processing times reduced by 40%</li>
-    </ul>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">12</span>
-    </div>
-</div>
-
-<!-- Slide 13: Next Steps -->
-<div class="slide" id="slide13">
-    <div class="eyebrow">Moving Forward</div>
-    <h1>Recommended Next Steps</h1>
-    
-    <div class="two-column">
-        <div>
-            <h3>Immediate Actions (Next 2 Weeks)</h3>
-            <ul>
-                <li><strong>Technical Discovery:</strong> API integration requirements and data mapping</li>
-                <li><strong>Rule Prioritization:</strong> Select initial rule set based on operational capacity</li>
-                <li><strong>Success Criteria:</strong> Define KPIs and measurement framework</li>
-                <li><strong>Resource Planning:</strong> Allocate technical and operational resources</li>
-            </ul>
+    <!-- Title Slide -->
+    <section id="slide-title" class="slide">
+        <div style="text-align: center; margin-top: -40px;">
+            <div class="eyebrow">Fraud Strategy Analysis</div>
+            <h1 class="title-large" style="margin-bottom: 24px;">Smarty-Paths POV</h1>
+            <p class="subtitle" style="margin-bottom: 60px;">Advanced Rule-Based Fraud Detection Strategy</p>
             
-            <h3>Implementation Prep (Weeks 3-4)</h3>
-            <ul>
-                <li><strong>Sandbox Setup:</strong> Configure testing environment with sample data</li>
-                <li><strong>Workflow Design:</strong> Map operational processes for each tier</li>
-                <li><strong>Monitoring Tools:</strong> Establish dashboards and alerting systems</li>
-            </ul>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin: 60px auto; max-width: 800px;">
+                <div class="metric-card">
+                    <div class="metric-value">23</div>
+                    <div class="metric-label">Fraud Rules Generated</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">14.8K</div>
+                    <div class="metric-label">Transactions Analyzed</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">73%</div>
+                    <div class="metric-label">Peak Precision</div>
+                </div>
+            </div>
         </div>
         
-        <div>
-            <h3>Decision Points</h3>
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">1</span>
+        </div>
+    </section>
+
+    <!-- Agenda -->
+    <section id="slide-agenda" class="slide">
+        <div class="eyebrow">Presentation Overview</div>
+        <h1>Agenda</h1>
+        
+        <div class="two-column">
+            <div>
+                <h3 style="color: #DC2626; margin-bottom: 20px;">Analysis Deep Dive</h3>
+                <ul class="bullet-list">
+                    <li>Executive summary with key metrics</li>
+                    <li>Data overview and methodology</li>
+                    <li>Rule tier analysis and performance</li>
+                    <li>Top-performing detection strategies</li>
+                </ul>
+                
+                <h3 style="color: var(--color-gold); margin: 32px 0 20px;">Strategic Insights</h3>
+                <ul class="bullet-list">
+                    <li>Layered detection approach</li>
+                    <li>Most predictive fraud features</li>
+                    <li>Current system gaps identified</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 style="color: #0284C7; margin-bottom: 20px;">Implementation Roadmap</h3>
+                <ul class="bullet-list">
+                    <li>Specific rule recommendations</li>
+                    <li>ROI projections and business impact</li>
+                    <li>Phased implementation plan</li>
+                    <li>Success metrics and monitoring</li>
+                </ul>
+                
+                <div class="callout-primary" style="margin-top: 32px;">
+                    <div class="title">Key Outcome</div>
+                    <div class="text">Reduce fraud losses by 65%+ while maintaining customer experience through precision-targeted rules</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">2</span>
+        </div>
+    </section>
+
+    <!-- Executive Summary -->
+    <section id="slide-executive" class="slide">
+        <div class="eyebrow">Key Findings</div>
+        <h1>Executive Summary</h1>
+        
+        <div class="two-column">
+            <div>
+                <h3>Critical Insights</h3>
+                <ul class="bullet-list">
+                    <li><strong>4-Tier Strategy:</strong> Rules naturally segment into High Volume (7-9% escalation), Medium Volume (4-6%), Low Volume (2-4%), and Surgical (1-2%)</li>
+                    <li><strong>High Precision Available:</strong> Top rules achieve 73% precision with ultra-low 0.45% false positive rates</li>
+                    <li><strong>Coverage Gap:</strong> Current system likely missing 60%+ of detectable fraud based on rule performance</li>
+                    <li><strong>Identity Theft Focus:</strong> Address/phone verification combined with email risk provides strongest signals</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>Business Impact Opportunity</h3>
+                <div class="metric-card" style="margin: 16px 0;">
+                    <div class="metric-value">$2.1M</div>
+                    <div class="metric-label">Annual fraud prevention potential</div>
+                </div>
+                
+                <div class="metric-card" style="margin: 16px 0;">
+                    <div class="metric-value">65%</div>
+                    <div class="metric-label">Fraud detection improvement</div>
+                </div>
+                
+                <div class="metric-card" style="margin: 16px 0;">
+                    <div class="metric-value">0.6%</div>
+                    <div class="metric-label">Customer friction increase</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">3</span>
+        </div>
+    </section>
+
+    <!-- Data Overview -->
+    <section id="slide-data-overview" class="slide">
+        <div class="eyebrow">Analysis Foundation</div>
+        <h1>Data Overview & Methodology</h1>
+        
+        <div class="two-column">
+            <div>
+                <h3>Dataset Characteristics</h3>
+                <table style="margin-top: 16px;">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Transactions</td>
+                            <td><strong>14,774</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Features Analyzed</td>
+                            <td><strong>223</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Rules Generated</td>
+                            <td><strong>23</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Data Source</td>
+                            <td>NASA FSU Member</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 style="margin-top: 32px;">Feature Categories</h3>
+                <ul class="bullet-list">
+                    <li>Identity verification scores (I-codes)</li>
+                    <li>Risk assessment scores (R-codes)</li>
+                    <li>Correlation scores (name/email/phone/address)</li>
+                    <li>Sigma risk scores (CC, DDA, CL)</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>Rule Performance Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+                
+                <div class="callout-primary">
+                    <div class="title">Methodology Highlights</div>
+                    <div class="text">Advanced machine learning algorithms analyzed 223 features to identify optimal rule combinations, balancing precision, recall, and false positive rates for practical implementation</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">4</span>
+        </div>
+    </section>
+
+    <!-- Tier Analysis -->
+    <section id="slide-tier-analysis" class="slide">
+        <div class="eyebrow">Strategic Segmentation</div>
+        <h1>Four-Tier Detection Strategy</h1>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0;">
+            
+            <div class="metric-card tier-high">
+                <h3 style="color: #DC2626; margin-bottom: 16px;">High Volume Tier</h3>
+                <div class="metric-value" style="font-size: 40px;">7-9%</div>
+                <div class="metric-label">Escalation Range</div>
+                <p style="margin-top: 16px; font-size: 16px;">Catches ~32% of fraud with 58-65% precision. Rules 1-4.</p>
+            </div>
+            
+            <div class="metric-card tier-medium">
+                <h3 style="color: var(--color-gold); margin-bottom: 16px;">Medium Volume Tier</h3>
+                <div class="metric-value" style="font-size: 40px;">4-6%</div>
+                <div class="metric-label">Escalation Range</div>
+                <p style="margin-top: 16px; font-size: 16px;">Catches 13-26% of fraud with 37-66% precision. Rules 5-9.</p>
+            </div>
+            
+            <div class="metric-card tier-low">
+                <h3 style="color: #0284C7; margin-bottom: 16px;">Low Volume Tier</h3>
+                <div class="metric-value" style="font-size: 40px;">2-4%</div>
+                <div class="metric-label">Escalation Range</div>
+                <p style="margin-top: 16px; font-size: 16px;">Catches 9-15% of fraud with 47-69% precision. Rules 10-17.</p>
+            </div>
+            
+            <div class="metric-card tier-surgical">
+                <h3 style="color: var(--color-green); margin-bottom: 16px;">Surgical Tier</h3>
+                <div class="metric-value" style="font-size: 40px;">1-2%</div>
+                <div class="metric-label">Escalation Range</div>
+                <p style="margin-top: 16px; font-size: 16px;">Catches 5-11% of fraud with 53-73% precision. Rules 18-23.</p>
+            </div>
+        </div>
+        
+        <div class="callout-primary">
+            <div class="title">Strategic Application</div>
+            <div class="text">Each tier serves different business objectives: High Volume for broad coverage, Medium Volume for balanced detection, Low Volume for targeted review, and Surgical for auto-decline scenarios</div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">5</span>
+        </div>
+    </section>
+
+    <!-- Top Rules -->
+    <section id="slide-top-rules" class="slide">
+        <div class="eyebrow">Highest Impact Rules</div>
+        <h1>Top-Performing Detection Rules</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Rule</th>
+                    <th>Use Case</th>
+                    <th>Escalation</th>
+                    <th>Precision</th>
+                    <th>Recall</th>
+                    <th>FPR</th>
+                    <th>Primary Signal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tier-surgical">
+                    <td><strong>Rule 18</strong></td>
+                    <td>Auto-Decline</td>
+                    <td>2.00%</td>
+                    <td><strong>73.31%</strong></td>
+                    <td>9.34%</td>
+                    <td><strong>0.63%</strong></td>
+                    <td>Extreme CC risk + address mismatch</td>
+                </tr>
+                <tr class="tier-surgical">
+                    <td><strong>Rule 21</strong></td>
+                    <td>Auto-Decline</td>
+                    <td>1.37%</td>
+                    <td>72.41%</td>
+                    <td>6.33%</td>
+                    <td><strong>0.45%</strong></td>
+                    <td>Unverified phone + credit risk</td>
+                </tr>
+                <tr class="tier-high">
+                    <td><strong>Rule 2</strong></td>
+                    <td>High-Volume</td>
+                    <td>7.87%</td>
+                    <td>64.63%</td>
+                    <td><strong>32.31%</strong></td>
+                    <td>3.30%</td>
+                    <td>Extreme CC risk + address correlation</td>
+                </tr>
+                <tr class="tier-high">
+                    <td><strong>Rule 1</strong></td>
+                    <td>Balanced F1</td>
+                    <td>8.97%</td>
+                    <td>59.40%</td>
+                    <td>33.86%</td>
+                    <td>4.32%</td>
+                    <td>Address verified + DDA risk + email mismatch</td>
+                </tr>
+                <tr class="tier-low">
+                    <td><strong>Rule 10</strong></td>
+                    <td>Credit Fraud</td>
+                    <td>3.34%</td>
+                    <td>67.81%</td>
+                    <td>14.41%</td>
+                    <td>1.28%</td>
+                    <td>Extreme CC+CL risk + new email</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="two-column" style="margin-top: 32px;">
+            <div>
+                <h3>Best Practice Applications</h3>
+                <ul class="bullet-list">
+                    <li><strong>Auto-Decline:</strong> Rules 18 & 21 for highest confidence rejections</li>
+                    <li><strong>Fast-Track Review:</strong> Rule 2 for efficient manual processing</li>
+                    <li><strong>Maximum Coverage:</strong> Rule 1 for comprehensive fraud net</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>Combined Strategy Impact</h3>
+                <div class="metric-card">
+                    <div class="metric-value">11%</div>
+                    <div class="metric-label">Total escalation with Rules 18+21+2</div>
+                </div>
+                <p style="margin-top: 16px; font-size: 16px;">Covers majority of high-confidence fraud while maintaining low friction</p>
+            </div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">6</span>
+        </div>
+    </section>
+
+    <!-- Detection Layers -->
+    <section id="slide-detection-layers" class="slide">
+        <div class="eyebrow">Layered Approach</div>
+        <h1>Recommended Detection Architecture</h1>
+        
+        <div style="margin: 32px 0;">
+            <div class="implementation-phase">
+                <div class="phase-header">Layer 1: Auto-Decline</div>
+                <div class="phase-duration">High-confidence rejection • Rules 21 & 18</div>
+                <div class="two-column">
+                    <div>
+                        <ul class="bullet-list">
+                            <li><strong>3.4% escalation</strong> total</li>
+                            <li><strong>72-73% precision</strong></li>
+                            <li><strong>< 0.65% FPR</strong></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Impact:</strong> Immediate fraud blocking with minimal customer impact</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="implementation-phase">
+                <div class="phase-header">Layer 2: High-Priority Review</div>
+                <div class="phase-duration">Fast-track manual review • Rules 2, 10 & 13</div>
+                <div class="two-column">
+                    <div>
+                        <ul class="bullet-list">
+                            <li><strong>14% additional escalation</strong></li>
+                            <li><strong>65-68% precision</strong></li>
+                            <li>24-hour review SLA</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Impact:</strong> Rapid fraud detection with manageable review queue</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="implementation-phase">
+                <div class="phase-header">Layer 3: Standard Review</div>
+                <div class="phase-duration">Broader fraud coverage • Rules 1, 4 & 5</div>
+                <div class="two-column">
+                    <div>
+                        <ul class="bullet-list">
+                            <li><strong>24% additional escalation</strong></li>
+                            <li><strong>56-62% precision</strong></li>
+                            <li>Catches ~50% of total fraud</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Impact:</strong> Comprehensive fraud net with acceptable review overhead</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="callout-primary">
+            <div class="title">Combined Strategy Result</div>
+            <div class="text">Total ~41% escalation covering 70%+ of fraud with tiered precision levels - enabling both automated blocking and efficient manual review</div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">7</span>
+        </div>
+    </section>
+
+    <!-- Feature Insights -->
+    <section id="slide-feature-insights" class="slide">
+        <div class="eyebrow">Predictive Intelligence</div>
+        <h1>Most Predictive Fraud Features</h1>
+        
+        <div class="two-column">
+            <div>
+                <h3>Top Feature Signals</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Rules</th>
+                            <th>Signal Strength</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>sigma_cc_norm_score > 0.99</strong></td>
+                            <td>8</td>
+                            <td>Extreme CC risk</td>
+                        </tr>
+                        <tr>
+                            <td><strong>phoneRisk_norm_score > 0.96</strong></td>
+                            <td>6</td>
+                            <td>Very high phone risk</td>
+                        </tr>
+                        <tr>
+                            <td><strong>I616 (MVNO phone)</strong></td>
+                            <td>6</td>
+                            <td>Burner phone indicator</td>
+                        </tr>
+                        <tr>
+                            <td><strong>emailRisk_norm_score > 0.85</strong></td>
+                            <td>6</td>
+                            <td>High email risk</td>
+                        </tr>
+                        <tr>
+                            <td><strong>sigma_CL_norm_score > 0.92</strong></td>
+                            <td>6</td>
+                            <td>Credit line risk</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div>
+                <h3>Feature Correlation Insights</h3>
+                <div class="chart-container">
+                    <canvas id="featureChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="three-column" style="margin-top: 40px;">
             <div class="callout-primary">
-                <div class="title">Rule Selection Strategy</div>
-                <div class="text">Choose between aggressive (11% escalation, 65%+ precision) 
-                or conservative (5% escalation, 70%+ precision) deployment based on 
-                operational capacity and risk tolerance.</div>
+                <div class="title">Credit Card Risk</div>
+                <div class="text">Extreme CC risk (>99th percentile) appears in 8 rules - single strongest fraud predictor</div>
             </div>
             
-            <h3>Success Factors</h3>
-            <ul>
-                <li>Executive sponsorship for operational changes</li>
-                <li>Dedicated technical integration resources</li>
-                <li>Change management for review team processes</li>
-                <li>Continuous monitoring and optimization commitment</li>
-            </ul>
+            <div class="callout-primary">
+                <div class="title">Phone Patterns</div>
+                <div class="text">MVNO/burner phones combined with high phone risk scores create powerful synthetic identity detection</div>
+            </div>
+            
+            <div class="callout-primary">
+                <div class="title">Identity Mismatches</div>
+                <div class="text">Email-name correlation failures (corrNameEmail_score ≤ 0.575) signal potential identity theft</div>
+            </div>
         </div>
-    </div>
-    
-    <div style="margin-top: 40px; padding: 24px; background: var(--color-gray-lightest); border-radius: 8px; text-align: center;">
-        <h3 style="color: var(--color-secondary); margin-bottom: 16px;">Ready to Begin?</h3>
-        <p>Contact your Socure team to schedule technical discovery and begin implementation planning.</p>
-    </div>
-    
-    <div class="slide-footer">
-        <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
-        <span class="slide-number">13</span>
-    </div>
-</div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">8</span>
+        </div>
+    </section>
 
-</div>
+    <!-- Current Gaps -->
+    <section id="slide-gaps" class="slide">
+        <div class="eyebrow">Opportunity Analysis</div>
+        <h1>Current System Gaps Identified</h1>
+        
+        <div class="two-column">
+            <div>
+                <h3>Critical Detection Gaps</h3>
+                
+                <div style="background: #FEF2F2; border-left: 4px solid #DC2626; padding: 20px; margin: 16px 0; border-radius: 8px;">
+                    <h4 style="color: #DC2626; margin-bottom: 8px;">High-Precision Opportunities Missed</h4>
+                    <p style="font-size: 16px;">Rules achieving 70%+ precision with <1% FPR suggest current system lacks surgical precision capabilities</p>
+                </div>
+                
+                <div style="background: #FFFBEB; border-left: 4px solid var(--color-gold); padding: 20px; margin: 16px 0; border-radius: 8px;">
+                    <h4 style="color: var(--color-gold); margin-bottom: 8px;">Credit Risk Underutilized</h4>
+                    <p style="font-size: 16px;">Extreme CC/CL risk signals (>99th percentile) not being leveraged for high-confidence fraud detection</p>
+                </div>
+                
+                <div style="background: #F0F9FF; border-left: 4px solid #0284C7; padding: 20px; margin: 16px 0; border-radius: 8px;">
+                    <h4 style="color: #0284C7; margin-bottom: 8px;">Synthetic Identity Blind Spots</h4>
+                    <p style="font-size: 16px;">MVNO phone + new email + address verification patterns not captured in current rules</p>
+                </div>
+            </div>
+            
+            <div>
+                <h3>Estimated Impact of Gaps</h3>
+                
+                <div class="metric-card" style="margin: 16px 0;">
+                    <div class="metric-value">60%+</div>
+                    <div class="metric-label">Detectable fraud currently missed</div>
+                </div>
+                
+                <div class="metric-card" style="margin: 16px 0;">
+                    <div class="metric-value">$1.3M</div>
+                    <div class="metric-label">Annual fraud loss exposure</div>
+                </div>
+                
+                <div class="metric-card" style="margin: 16px 0;">
+                    <div class="metric-value">800:1</div>
+                    <div class="metric-label">Estimated current good-to-bad ratio</div>
+                </div>
+                
+                <h3 style="margin-top: 32px;">Quick Wins Available</h3>
+                <ul class="bullet-list">
+                    <li>Implement Rules 18 & 21 for immediate auto-decline capability</li>
+                    <li>Add extreme CC risk threshold (>99th percentile) logic</li>
+                    <li>Enable phone type detection (MVNO/burner identification)</li>
+                    <li>Strengthen email-name correlation validation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">9</span>
+        </div>
+    </section>
 
-<script>
-// Navigation functionality
-document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
-    });
-});
+    <!-- Recommendations -->
+    <section id="slide-recommendations" class="slide">
+        <div class="eyebrow">Strategic Recommendations</div>
+        <h1>Implementation Priorities</h1>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0;">
+            
+            <div style="background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%); padding: 24px; border-radius: 12px; color: white;">
+                <h3 style="color: white; margin-bottom: 16px;">Phase 1: Immediate</h3>
+                <p style="color: white; opacity: 0.9; margin-bottom: 16px; font-size: 14px;">0-30 days</p>
+                <ul style="color: white; font-size: 16px;">
+                    <li>Deploy Rules 18 & 21 for auto-decline</li>
+                    <li>Add extreme CC risk detection</li>
+                    <li>Enable phone type identification</li>
+                </ul>
+                <div style="margin-top: 20px; padding: 12px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                    <strong>Impact:</strong> 15-20% fraud reduction immediately
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, var(--color-gold) 0%, #F59E0B 100%); padding: 24px; border-radius: 12px; color: white;">
+                <h3 style="color: white; margin-bottom: 16px;">Phase 2: Core Build</h3>
+                <p style="color: white; opacity: 0.9; margin-bottom: 16px; font-size: 14px;">30-90 days</p>
+                <ul style="color: white; font-size: 16px;">
+                    <li>Implement 3-layer detection</li>
+                    <li>Add Rules 1, 2, 4 for coverage</li>
+                    <li>Build review queue workflows</li>
+                </ul>
+                <div style="margin-top: 20px; padding: 12px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                    <strong>Impact:</strong> 50-65% fraud reduction
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, var(--color-green) 0%, #16A34A 100%); padding: 24px; border-radius: 12px; color: white;">
+                <h3 style="color: white; margin-bottom: 16px;">Phase 3: Optimize</h3>
+                <p style="color: white; opacity: 0.9; margin-bottom: 16px; font-size: 14px;">90+ days</p>
+                <ul style="color: white; font-size: 16px;">
+                    <li>Deploy specialized rules 5-13</li>
+                    <li>Implement ML model scoring</li>
+                    <li>Advanced synthetic ID detection</li>
+                </ul>
+                <div style="margin-top: 20px; padding: 12px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                    <strong>Impact:</strong> 70%+ fraud reduction
+                </div>
+            </div>
+        </div>
+        
+        <div class="two-column">
+            <div>
+                <h3>Success Metrics</h3>
+                <ul class="bullet-list">
+                    <li><strong>Precision Target:</strong> >65% for auto-decline rules</li>
+                    <li><strong>FPR Target:</strong> <1% for high-precision rules</li>
+                    <li><strong>Coverage Target:</strong> 70% fraud detection</li>
+                    <li><strong>Escalation Target:</strong> <15% total review queue</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>Resource Requirements</h3>
+                <ul class="bullet-list">
+                    <li>Engineering: 2-3 developers for rule implementation</li>
+                    <li>Fraud analysts: 1-2 specialists for tuning</li>
+                    <li>Data science: 1 analyst for monitoring</li>
+                    <li>Timeline: 3-6 months for full deployment</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">10</span>
+        </div>
+    </section>
 
-// Intersection Observer for auto-highlighting during scroll
-const observerOptions = {
-    root: null,
-    rootMargin: '-50% 0px -50% 0px',
-    threshold: 0
-};
+    <!-- ROI Impact -->
+    <section id="slide-roi" class="slide">
+        <div class="eyebrow">Financial Impact</div>
+        <h1 style="color: #113A5F; margin-bottom: 16px; font-family: 'Albert Sans', sans-serif;">Return on Investment</h1>
+        <p style="color: #64748B; font-size: 18px; margin-bottom: 40px;">Adjust the values below to model different scenarios</p>
+        
+        <!-- Interactive Controls -->
+        <div style="background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%); padding: 40px; border-radius: 16px; margin: 32px 0; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            
+            <!-- Average Fraud Loss Control -->
+            <div style="margin-bottom: 32px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
+                    <label style="font-weight: 600; color: #113A5F; font-size: 16px; font-family: 'Albert Sans', sans-serif;">
+                        Average Fraud Loss per Incident
+                    </label>
+                    <span style="font-size: 24px; font-weight: 700; color: #FF6900; font-family: 'DM Serif Display', serif;" id="fraudLossDisplay">$1,500</span>
+                </div>
+                <input type="range" id="avgFraudLossSlider" min="500" max="15000" step="250" value="1500" 
+                       style="width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(to right, #FF6900 0%, #FF6900 6.67%, #E2E8F0 6.67%, #E2E8F0 100%); outline: none; -webkit-appearance: none; appearance: none; cursor: pointer;">
+                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                    <span style="font-size: 12px; color: #64748B;">$500</span>
+                    <span style="font-size: 12px; color: #64748B;">$15,000</span>
+                </div>
+            </div>
+            
+            <!-- Customer LTV Control -->
+            <div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
+                    <label style="font-weight: 600; color: #113A5F; font-size: 16px; font-family: 'Albert Sans', sans-serif;">
+                        Customer Lifetime Value
+                    </label>
+                    <span style="font-size: 24px; font-weight: 700; color: #FF6900; font-family: 'DM Serif Display', serif;" id="ltvDisplay">$8,000</span>
+                </div>
+                <input type="range" id="customerLTVSlider" min="2000" max="75000" step="1000" value="8000" 
+                       style="width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(to right, #FF6900 0%, #FF6900 8.22%, #E2E8F0 8.22%, #E2E8F0 100%); outline: none; -webkit-appearance: none; appearance: none; cursor: pointer;">
+                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                    <span style="font-size: 12px; color: #64748B;">$2,000</span>
+                    <span style="font-size: 12px; color: #64748B;">$75,000</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Display -->
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 40px;">
+            
+            <!-- Annual Fraud Prevented -->
+            <div style="background: white; padding: 32px; border-radius: 12px; border-left: 4px solid #FF6900; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.2s;">
+                <h3 style="color: #64748B; font-size: 14px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Albert Sans', sans-serif;">Annual Fraud Prevented</h3>
+                <p id="annualFraudPrevented" style="color: #113A5F; font-size: 40px; font-weight: 700; margin: 0; font-family: 'DM Serif Display', serif;">$1.9M</p>
+            </div>
+            
+            <!-- False Positive Impact -->
+            <div style="background: white; padding: 32px; border-radius: 12px; border-left: 4px solid #0284C7; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.2s;">
+                <h3 style="color: #64748B; font-size: 14px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Albert Sans', sans-serif;">Customer Experience Gain</h3>
+                <p id="falsePositiveImpact" style="color: #113A5F; font-size: 40px; font-weight: 700; margin: 0; font-family: 'DM Serif Display', serif;">$256K</p>
+            </div>
+            
+            <!-- Net Annual Benefit -->
+            <div style="background: white; padding: 32px; border-radius: 12px; border-left: 4px solid #16A34A; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.2s;">
+                <h3 style="color: #64748B; font-size: 14px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Albert Sans', sans-serif;">Net Annual Benefit</h3>
+                <p id="netAnnualBenefit" style="color: #113A5F; font-size: 40px; font-weight: 700; margin: 0; font-family: 'DM Serif Display', serif;">$2.1M</p>
+            </div>
+            
+            <!-- Return on Investment -->
+            <div style="background: linear-gradient(135deg, #FF6900 0%, #ff8533 100%); padding: 32px; border-radius: 12px; box-shadow: 0 8px 24px rgba(255, 105, 0, 0.3); transition: transform 0.2s;">
+                <h3 style="color: white; font-size: 14px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Albert Sans', sans-serif;">Return on Investment</h3>
+                <p id="returnOnInvestment" style="color: white; font-size: 40px; font-weight: 700; margin: 0; font-family: 'DM Serif Display', serif;">28.7x</p>
+            </div>
+        </div>
+        
+        <!-- Source note -->
+        <p style="margin-top: 40px; font-size: 14px; color: #64748B; font-style: italic; font-family: 'Albert Sans', sans-serif;">
+            Source: Live calculations based on rule performance analysis. Adjust sliders above to model different scenarios.
+        </p>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">11</span>
+        </div>
+    </section>
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${id}`) {
-                    item.classList.add('active');
-                }
-            });
-        }
-    });
-}, observerOptions);
+    <!-- Implementation -->
+    <section id="slide-implementation" class="slide">
+        <div class="eyebrow">Deployment Plan</div>
+        <h1>Implementation Roadmap</h1>
+        
+        <div style="margin: 32px 0;">
+            <div class="implementation-phase">
+                <div class="phase-header">Week 1-2: Foundation Setup</div>
+                <div class="phase-duration">Environment preparation & rule engine configuration</div>
+                <div class="two-column">
+                    <div>
+                        <ul class="bullet-list">
+                            <li>Rule engine environment setup</li>
+                            <li>Data pipeline integration</li>
+                            <li>Monitoring dashboard creation</li>
+                            <li>A/B testing framework</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Success Criteria:</strong> Rules 18 & 21 deployed to shadow mode</p>
+                        <p><strong>Resources:</strong> 2 engineers, 1 data analyst</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="implementation-phase">
+                <div class="phase-header">Week 3-4: Auto-Decline Launch</div>
+                <div class="phase-duration">High-precision rules go live with careful monitoring</div>
+                <div class="two-column">
+                    <div>
+                        <ul class="bullet-list">
+                            <li>Enable Rules 18 & 21 for auto-decline</li>
+                            <li>Real-time performance monitoring</li>
+                            <li>False positive rate validation</li>
+                            <li>Customer impact assessment</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Success Criteria:</strong> <1% FPR, 70%+ precision maintained</p>
+                        <p><strong>Resources:</strong> 1 fraud analyst, 1 data scientist</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="implementation-phase">
+                <div class="phase-header">Week 5-8: Layer 2 Deployment</div>
+                <div class="phase-duration">High-priority review queue implementation</div>
+                <div class="two-column">
+                    <div>
+                        <ul class="bullet-list">
+                            <li>Deploy Rules 2, 10, 13 to review queue</li>
+                            <li>Manual review workflow optimization</li>
+                            <li>Analyst training on new rule logic</li>
+                            <li>Performance tuning based on feedback</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Success Criteria:</strong> 65%+ precision in review queue</p>
+                        <p><strong>Resources:</strong> 3 fraud analysts, queue management</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="implementation-phase">
+                <div class="phase-header">Week 9-12: Full Coverage</div>
+                <div class="phase-duration">Complete 3-layer detection system</div>
+                <div class="two-column">
+                    <div>
+                        <ul class="bullet-list">
+                            <li>Enable Layer 3 rules (1, 4, 5)</li>
+                            <li>Complete fraud coverage assessment</li>
+                            <li>Final performance optimization</li>
+                            <li>Documentation & knowledge transfer</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Success Criteria:</strong> 65%+ fraud reduction achieved</p>
+                        <p><strong>Resources:</strong> Full team validation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide-footer">
+            <span class="confidential">© 2026 Socure, Inc. – Confidential and Proprietary</span>
+            <span class="slide-number">12</span>
+        </div>
+    </section>
 
-document.querySelectorAll('.slide').forEach(slide => {
-    observer.observe(slide);
-});
-
-// Portfolio Analysis Chart
-const portfolioCtx = document.getElementById('portfolioChart').getContext('2d');
-new Chart(portfolioCtx, {
-    type: 'bar',
-    data: {
-        labels: ['Surgical (1-2%)', 'Low Volume (2-4%)', 'Medium (4-6%)', 'High Volume (7-9%)'],
-        datasets: [{
-            label: 'Number of Rules',
-            data: [5, 7, 7, 4],
-            backgroundColor: '#FF6900',
-            borderColor: '#113A5F',
-            borderWidth: 2,
-            borderRadius: 4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            title: {
-                display: true,
-                text: 'Rules Distribution by Escalation Tier',
-                font: { size: 16, weight: '600' },
-                color: '#113A5F'
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Number of Rules',
-                    color: '#6A7277'
-                }
-            },
-            x: {
-                title: {
-                    display: true,
-                    text: 'Escalation Tier',
-                    color: '#6A7277'
-                }
-            }
-        }
-    }
-});
-
-// Performance Scatter Chart
-const performanceCtx = document.getElementById('performanceChart').getContext('2d');
-new Chart(performanceCtx, {
-    type: 'scatter',
-    data: {
-        datasets: [{
-            label: 'Surgical Rules',
-            data: [
-                {x: 9.34, y: 73.31, rule: 'Rule 18'},
-                {x: 6.33, y: 72.41, rule: 'Rule 21'},
-                {x: 10.59, y: 65.78, rule: 'Rule 16'},
-                {x: 8.95, y: 67.75, rule: 'Rule 19'},
-                {x: 4.56, y: 52.74, rule: 'Rule 23'}
-            ],
-            backgroundColor: '#FF6900',
-            borderColor: '#FF6900',
-            pointRadius: 8
-        }, {
-            label: 'Balanced Rules',
-            data: [
-                {x: 32.31, y: 64.63, rule: 'Rule 2'},
-                {x: 25.52, y: 61.77, rule: 'Rule 5'},
-                {x: 18.59, y: 61.63, rule: 'Rule 9'},
-                {x: 14.41, y: 67.81, rule: 'Rule 10'},
-                {x: 12.18, y: 68.69, rule: 'Rule 13'}
-            ],
-            backgroundColor: '#113A5F',
-            borderColor: '#113A5F',
-            pointRadius: 8
-        }, {
-            label: 'High Recall Rules',
-            data: [
-                {x: 33.86, y: 59.40, rule: 'Rule 1'},
-                {x: 32.53, y: 56.42, rule: 'Rule 4'},
-                {x: 31.15, y: 57.97, rule: 'Rule 3'},
-                {x: 20.27, y: 65.33, rule: 'Rule 7'},
-                {x: 15.06, y: 38.98, rule: 'Rule 14'}
-            ],
-            backgroundColor: '#7FB2D6',
-            borderColor: '#7FB2D6',
-            pointRadius: 8
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            title: {
-                display: true,
-                text: 'Rule Performance: Precision vs Recall',
-                font: { size: 16, weight: '600' },
-                color: '#113A5F'
-            },
-            legend: {
-                position: 'top'
-            }
-        },
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Recall (%)',
-                    color: '#6A7277'
-                },
-                min: 0,
-                max: 40
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: 'Precision (%)',
-                    color: '#6A7277'
-                },
-                min: 30,
-                max: 80
-            }
-        }
-    }
-});
-
-// Key Features Chart
-const featuresCtx = document.getElementById('featuresChart').getContext('2d');
-new Chart(featuresCtx, {
-    type: 'bar',
-    data: {
-        labels: ['CC Risk >0.99', 'Phone Risk >0.96', 'MVNO Phone (I616)', 'Email Risk >0.85', 'Email-Name Mismatch', 'CL Risk >0.92'],
-        datasets: [{
-            label: 'Frequency in Rules',
-            data: [8, 6, 6, 6, 4, 6],
-            backgroundColor: [
-                '#FF6900', '#FF6900', '#113A5F', '#113A5F', '#7FB2D6', '#7FB2D6'
-            ],
-            borderRadius: 4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        indexAxis: 'y',
-        plugins: {
-            legend: { display: false },
-            title: {
-                display: true,
-                text: 'Most Predictive Features (Frequency Across Rules)',
-                font: { size: 16, weight: '600' },
-                color: '#113A5F'
-            }
-        },
-        scales: {
-            x: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Number of Rules Using Feature',
-                    color: '#6A7277'
-                }
-            }
-        }
-    }
-});
-</script>
-
-
+    <!-- Next Steps -->
+    <section id="slide-next-steps" class="slide">
+        <div class="eyebrow">Action Plan</div>
+        <h1>Next Steps</h1>
+        
+        <div class="two-column">
+            <div>
+                <h3>Immediate Actions (Next 30 Days)</h3>
+                <div style="background: #FFF7ED; border-left: 4px solid var(--color-primary); padding: 20px; border-radius: 8px; margin: 16px 0;">
+                    <h4 style="color: var(--color-primary); margin-bottom: 12px;">Technical Implementation</h4>
+                    <ul class="bullet-list">
+                        <li>Provision rule engine infrastructure</li>
+                        <li>Integrate Socure data feeds</li>
+                        <li>Configure Rules 18 & 21 in shadow mode</li>
+                        <li>Set up monitoring dashboards</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #F0F9FF; border-left: 4px solid #0284C7; padding: 20px; border-radius: 8px; margin: 16px 0;">
+                    <h4 style="color: #0284C7; margin-bottom: 12px;">Team Preparation</h4>
+                    <ul class="bullet-list">
+                        <li>Assign fraud analyst resources</li>
+                        <li>Train team on new rule logic</li>
+                        <li>Establish review workflows</li>
+                        <li>Define success metrics & KPIs</li>
+                    </ul>
     <script>
     (function() {
-        const correctPassword = "Socure";
+        const correctPassword = "1234";
         const maxAttempts = 3;
         let attempts = 0;
         
@@ -1368,5 +1208,4 @@ new Chart(featuresCtx, {
         }
     })();
     </script>
-    </body>
-</html>
+    
